@@ -49,7 +49,5 @@ You should be able to see a db console now that has
 the Device  and Service Repository in it.
 
 
-Scripts to insert is on: 
 
-resources/data.sql
 
