@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "454855b8-f414-48cc-b49a-6fd406c91824",
+		"name": "ninjaone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "997322"
+	},
+	"item": [
+		{
+			"name": "delete device",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/devices/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"devices",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "insert device",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"systemName\": \"System1\", \"type\": \"Type1\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/devices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"devices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add services",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\": \"Service1\", \"cost\": 10.0}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/services",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/services/1",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/services/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"services",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add services on device",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": 1, \"name\": \"Service1\", \"cost\": 10.0}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/devices/1/services",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"devices",
+						"1",
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "total coast",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/devices/1/totalCost",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"devices",
+						"1",
+						"totalCost"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
