@@ -20,10 +20,10 @@ resources/ninjaone.postman_collection.json
 
 ## Testing 
 This project includes both unit tests and integration tests. 
-To run the tests, use the following command:
+To run the testsd:
 
 ```
-mvn test
+execute task gradle test
 ```
 
 
