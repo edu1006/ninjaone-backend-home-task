@@ -35,7 +35,7 @@ public class ServiceServiceTest {
         when(serviceRepository.existsByName(service.getName())).thenReturn(false);
         when(serviceRepository.save(any(Service.class))).thenReturn(service);
 
-        Service addedService = serviceService.addService(service);
+        Service addedService = serviceService.addNewService(service);
 
         assertEquals(service.getName(), addedService.getName());
         assertEquals(service.getCost(), addedService.getCost(), 0.0);
@@ -48,7 +48,7 @@ public class ServiceServiceTest {
 
         when(serviceRepository.existsByName(service.getName())).thenReturn(true);
 
-        assertThrows(IllegalArgumentException.class , () -> serviceService.addService(service)) ;
+        assertThrows(IllegalArgumentException.class , () -> serviceService.addNewService(service)) ;
     }
 
     @Test
@@ -57,7 +57,7 @@ public class ServiceServiceTest {
 
         doNothing().when(serviceRepository).deleteById(id);
 
-        serviceService.deleteService(id);
+        serviceService.deleteServiceById(id);
 
         verify(serviceRepository, times(1)).deleteById(id);
     }

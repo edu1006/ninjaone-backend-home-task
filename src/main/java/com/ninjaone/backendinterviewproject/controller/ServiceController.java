@@ -6,47 +6,34 @@ import com.ninjaone.backendinterviewproject.model.Service;
 import com.ninjaone.backendinterviewproject.service.DeviceService;
 import com.ninjaone.backendinterviewproject.service.ServiceCatalogService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
-import java.util.Optional;
 
 @RestController
+@RequestMapping("/services")
 public class ServiceController {
-    @Autowired
-    private ServiceCatalogService serviceService;
+    private final ServiceCatalogService serviceCatalogService;
+    private final DeviceService deviceService;
 
     @Autowired
-    private DeviceService deviceService;
-
-    @PostMapping("/services")
-    public Service addService(@RequestBody @Valid Service service) {
-        return serviceService.addService(service);
+    public ServiceController(ServiceCatalogService serviceCatalogService, DeviceService deviceService) {
+        this.serviceCatalogService = serviceCatalogService;
+        this.deviceService = deviceService;
     }
 
-    @DeleteMapping("/services/{id}")
-    public void deleteService(@PathVariable Integer id) {
-        serviceService.deleteService(id);
+    @PostMapping
+    public ResponseEntity<Service> addService(@RequestBody @Valid Service service) {
+        Service newService = serviceCatalogService.addNewService(service);
+        return new ResponseEntity<>(newService, HttpStatus.CREATED);
     }
 
-
-    @PostMapping("/devices/{id}/services")
-    public ResponseEntity<Device> addServiceToDevice(@PathVariable Integer id, @RequestBody Service service) {
-        Optional<Device> deviceOptional = deviceService.getDeviceById(id);
-        if (!deviceOptional.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        Device device = deviceOptional.get();
-
-        Optional<Service> serviceOptional = serviceService.getServiceById(service.getId());
-        if (!serviceOptional.isPresent()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        device.getServices().add(serviceOptional.get());
-        deviceService.saveDevice(device);
-
-        return ResponseEntity.ok(device);
-    }}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteService(@PathVariable Integer id) {
+        serviceCatalogService.deleteServiceById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+}

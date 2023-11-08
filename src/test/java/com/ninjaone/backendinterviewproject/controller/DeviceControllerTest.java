@@ -28,7 +28,7 @@ public class DeviceControllerTest {
 
         ResponseEntity<Device> response = restTemplate.postForEntity("/devices", device, Device.class);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(device.getSystemName(), response.getBody().getSystemName());
         assertEquals(device.getType(), response.getBody().getType());

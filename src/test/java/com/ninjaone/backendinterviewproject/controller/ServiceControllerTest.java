@@ -29,7 +29,7 @@ public class ServiceControllerTest {
 
         ResponseEntity<Service> response = restTemplate.postForEntity("/services", service, Service.class);
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals(service.getName(), response.getBody().getName());
         assertEquals(service.getCost(), response.getBody().getCost());
