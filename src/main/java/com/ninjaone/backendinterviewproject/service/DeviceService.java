@@ -4,13 +4,10 @@ import com.ninjaone.backendinterviewproject.repository.DeviceRepository;
 import com.ninjaone.backendinterviewproject.model.Device;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.Optional;
 
 @Service
@@ -39,6 +36,10 @@ public class DeviceService {
     }
 
     public void deleteDevice(Integer id) {
+        if (!deviceRepository.existsById(id)) {
+            logger.error("Device with ID: " + id + " does not exist.");
+            throw new EntityNotFoundException("Device with ID: " + id + " does not exist.");
+        }
         logger.info("Deleting device with ID: " + id);
         deviceRepository.deleteById(id);
     }
@@ -49,7 +50,7 @@ public class DeviceService {
                 .map(device -> calculateServiceCost(device))
                 .orElseThrow(() -> {
                     logger.error("Device with ID " + id + " not found.");
-                    return new ResponseStatusException(HttpStatus.NOT_FOUND, "Device not found");
+                    return new EntityNotFoundException("Device not found");
                 });
     }
 
@@ -72,7 +73,7 @@ public class DeviceService {
             return device;
         }).orElseThrow(() -> {
             logger.error("Device with ID " + id + " not found.");
-            return new ResponseStatusException(HttpStatus.NOT_FOUND, "Device not found");
+            return new EntityNotFoundException( "Device not found");
         });
     }
 
@@ -85,7 +86,7 @@ public class DeviceService {
                 },
                 () -> {
                     logger.error("Service with ID " + service.getId() + " not found.");
-                    throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Service not found");
+                    throw new EntityNotFoundException("Service not found");
                 }
         );
     }
