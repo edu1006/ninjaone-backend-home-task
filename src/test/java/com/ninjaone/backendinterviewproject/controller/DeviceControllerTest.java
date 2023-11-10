@@ -1,6 +1,7 @@
 package com.ninjaone.backendinterviewproject.controller;
 
 import com.ninjaone.backendinterviewproject.model.Device;
+import com.ninjaone.backendinterviewproject.model.DeviceType;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ public class DeviceControllerTest {
     public void givenValidDevice_whenPostDevice_thenDeviceIsAdded() {
         Device device = new Device();
         device.setSystemName("System1");
-        device.setType("Type1");
+        device.setType(DeviceType.ETC);
 
         ResponseEntity<Device> response = restTemplate.postForEntity("/devices", device, Device.class);
 

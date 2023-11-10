@@ -11,7 +11,7 @@ POST /devices: Add a new device. </br>
 DELETE /devices/{id}: Delete a device. </br>
 POST /services: Add a new service. </br>
 DELETE /services/{id}: Delete a service. </br>
-POST /devices/{id}/services: Add a service to a device. </br>
+POST /devices/{id}/add-service-to-device/: Add a service to a device. </br>
 DELETE /devices/{id}/services/{serviceId}: Delete a service from a device. </br>
 GET /devices/{id}/totalCost: Get the total cost of services for a device. </br>
 

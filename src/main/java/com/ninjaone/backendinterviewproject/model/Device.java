@@ -26,5 +26,9 @@ public class Device {
             joinColumns = @JoinColumn(name = "device_id"),
             inverseJoinColumns = @JoinColumn(name = "service_id"))
     private List<Service> services;
+
+    public String getType () {
+        return this.type.getDesc();
+    }
 }
 

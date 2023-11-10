@@ -22,7 +22,10 @@ public enum DeviceType {
                 return deviceType;
             }
         }
-        return DeviceType.ETC;
+        throw new IllegalArgumentException("No enum constant found for " + text);
     }
 
+    public String getDesc(){
+        return this.desc;
+    }
 }
