@@ -17,8 +17,8 @@ public class Device {
 
     @NotBlank
     private String systemName;
-    @NotBlank
-    private String type;
+    @Enumerated
+    private DeviceType type;
 
     @ManyToMany
     @JoinTable(

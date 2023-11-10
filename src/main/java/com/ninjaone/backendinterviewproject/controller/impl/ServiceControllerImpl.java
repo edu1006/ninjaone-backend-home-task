@@ -5,7 +5,6 @@ import com.ninjaone.backendinterviewproject.controller.ServiceController;
 import com.ninjaone.backendinterviewproject.model.Service;
 import com.ninjaone.backendinterviewproject.service.DeviceService;
 import com.ninjaone.backendinterviewproject.service.ServiceCatalogService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
